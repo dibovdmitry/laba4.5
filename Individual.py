@@ -13,9 +13,6 @@ import xml.etree.ElementTree as ET
 Выполнить проверку программы с помощью утилиты mypy.
 """
 
-# Класс пользовательского исключения в случае, если введенная
-# команда является недопустимой.
-
 
 class UnknownCommandError(Exception):
 
@@ -135,7 +132,7 @@ class Race:
 
 if __name__ == '__main__':
     logging.basicConfig(
-        filename='students.log',
+        filename='races.log',
         level=logging.INFO
     )
 
@@ -156,7 +153,7 @@ if __name__ == '__main__':
                     f"тип самолёта {model}")
             elif command == 'list':
                     print(race)
-                    logging.info("Отображен список студентов.")
+                    logging.info("Отображен список рейсов.")
             elif command.startswith('select '):
                     parts = command.split(maxsplit=1)
                     selected = race.select()
@@ -166,13 +163,13 @@ if __name__ == '__main__':
                             '{:>4}: {}'.format(idx, airplane.path)
                             )
                             logging.info(
-                            f"Найдено {len(selected)} студентов со "
-                            f"средним баллом >=4: {parts[1]}."
+                            f"Найдено {len(selected)} рейсов с "
+                            f":номером {parts[1]}."
                             )
                     else:
-                        print("Студентов с оценкой выше 4 не найдены.")
+                        print("Самолёты с данным номером не найдены.")
                         logging.warning(
-                        f"Студентов со средним баллом более 4: {parts[1]}  не найдены."
+                        f"Самолётов с номером: {parts[1]}  не найдено."
                         )
             elif command.startswith('load '):
                     parts = command.split(maxsplit=1)
@@ -186,7 +183,7 @@ if __name__ == '__main__':
                     print("Список команд:\n")
                     print("add - добавить рейс;")
                     print("list - вывести список рейсов;")
-                    print("select <1> - запрос самолёта с заданным типом;")
+                    print("select  - запрос самолёта с заданным номером;")
                     print("load <имя_файла> - загрузить данные из файла;")
                     print("save <имя_файла> - сохранить данные в файл;")
                     print("help - отобразить справку;")
